@@ -1,2 +1,2 @@
-# main
-The main branch with original project, ready for production
+# World Without Shore
+2D mobile game project. Uses LibGDX, Java, C#, some additional things.
