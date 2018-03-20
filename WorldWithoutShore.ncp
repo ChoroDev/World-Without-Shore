@@ -11,12 +11,13 @@
         <Size width="162" height="129" />
         <Collapsed>False</Collapsed>
         <Member type="Property">int level { get; set; }</Member>
+        <Member type="Property">int maxSpeed { get; set; }</Member>
         <Member type="Method">virtual void Move()</Member>
       </Entity>
       <Entity type="Class">
         <Name>Raft</Name>
         <Access>Public</Access>
-        <Location left="271" top="26" />
+        <Location left="322" top="26" />
         <Size width="162" height="94" />
         <Collapsed>False</Collapsed>
         <Member type="Constructor">public Raft(int width, int height, int level)</Member>
@@ -25,7 +26,7 @@
       <Entity type="Class">
         <Name>Ship</Name>
         <Access>Public</Access>
-        <Location left="271" top="132" />
+        <Location left="322" top="123" />
         <Size width="162" height="94" />
         <Collapsed>False</Collapsed>
         <Member type="Constructor">public Ship(int width, int height, int level)</Member>
@@ -34,7 +35,7 @@
       <Entity type="Interface">
         <Name>IBoundary</Name>
         <Access>Public</Access>
-        <Location left="785" top="26" />
+        <Location left="1050" top="21" />
         <Size width="162" height="78" />
         <Collapsed>False</Collapsed>
         <Member type="Property">Vector2&lt;int, int&gt;[] boundaries { get; set; }</Member>
@@ -66,7 +67,7 @@
       <Entity type="Interface">
         <Name>IBuilding</Name>
         <Access>Public</Access>
-        <Location left="824" top="302" />
+        <Location left="1089" top="297" />
         <Size width="162" height="129" />
         <Collapsed>False</Collapsed>
         <Member type="Property">int buildingCapacity { get; set; }</Member>
@@ -77,7 +78,7 @@
       <Entity type="Class">
         <Name>RockFamily</Name>
         <Access>Public</Access>
-        <Location left="548" top="26" />
+        <Location left="813" top="21" />
         <Size width="162" height="94" />
         <Collapsed>False</Collapsed>
         <Member type="Constructor">public RockFamily(Vector2&lt;int, int&gt;[] boundaries)</Member>
@@ -86,7 +87,7 @@
       <Entity type="Class">
         <Name>BuildableRock</Name>
         <Access>Public</Access>
-        <Location left="548" top="394" />
+        <Location left="813" top="372" />
         <Size width="162" height="94" />
         <Collapsed>False</Collapsed>
         <Member type="Constructor">public BuildableRock(int width, int length, boolean isTouched, Vector2&lt;int, int&gt; coordinates, int buildingCapacity)</Member>
@@ -103,7 +104,7 @@
       <Entity type="Interface">
         <Name>IResourceType</Name>
         <Access>Public</Access>
-        <Location left="23" top="809" />
+        <Location left="305" top="676" />
         <Size width="162" height="95" />
         <Collapsed>False</Collapsed>
         <Member type="Property">IResourceType resourceType { get; set; }</Member>
@@ -120,7 +121,7 @@
       <Entity type="Interface">
         <Name>IObstacle</Name>
         <Access>Public</Access>
-        <Location left="548" top="163" />
+        <Location left="813" top="168" />
         <Size width="162" height="87" />
         <Collapsed>False</Collapsed>
         <Member type="Method">void Repel(IMovable movableObject)</Member>
@@ -128,11 +129,56 @@
       <Entity type="Class">
         <Name>BuildableLedge</Name>
         <Access>Public</Access>
-        <Location left="548" top="266" />
+        <Location left="813" top="261" />
         <Size width="162" height="94" />
         <Collapsed>False</Collapsed>
         <Member type="Constructor">public BuildableLedge(int width, int length, boolean isTouched, Vector2&lt;int, int&gt; coordinates, int buildingCapacity)</Member>
         <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IMovingController</Name>
+        <Access>Public</Access>
+        <Location left="560" top="68" />
+        <Size width="162" height="129" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void MoveRight(int maxSpeed)</Member>
+        <Member type="Method">void MoveDown(int maxSpeed)</Member>
+        <Member type="Method">void MoveUp(int maxSpeed)</Member>
+        <Member type="Method">void MoveLeft(int maxSpeed)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>Game</Name>
+        <Access>Public</Access>
+        <Location left="700" top="591" />
+        <Size width="162" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public void create()</Member>
+        <Member type="Method">public void dispose()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LogoScreen</Name>
+        <Access>Public</Access>
+        <Location left="964" top="591" />
+        <Size width="162" height="77" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>InputProcessor</Name>
+        <Access>Public</Access>
+        <Location left="1380" top="468" />
+        <Size width="162" height="77" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>ITouchPosition</Name>
+        <Access>Public</Access>
+        <Location left="1395" top="168" />
+        <Size width="162" height="78" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">Vector2&lt;float, float&gt; touchCoordinates { get; set; }</Member>
       </Entity>
     </Entities>
     <Relationships>
@@ -144,8 +190,8 @@
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>246</X>
-          <Y>172</Y>
+          <X>297</X>
+          <Y>163</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>246</X>
@@ -176,8 +222,8 @@
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>482</X>
-          <Y>412</Y>
+          <X>747</X>
+          <Y>390</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>458</X>
@@ -188,20 +234,8 @@
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>769</X>
-          <Y>392</Y>
-        </BendPoint>
-      </Relationship>
-      <Relationship type="Generalization" first="10" second="11">
-        <StartOrientation>Vertical</StartOrientation>
-        <EndOrientation>Vertical</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>101</X>
-          <Y>779</Y>
-        </BendPoint>
-        <BendPoint relativeToStartShape="False">
-          <X>101</X>
-          <Y>784</Y>
+          <X>1038</X>
+          <Y>400</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Realization" first="12" second="4">
@@ -212,8 +246,8 @@
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>264</X>
-          <Y>246</Y>
+          <X>306</X>
+          <Y>245</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>211</X>
@@ -225,13 +259,11 @@
         <EndOrientation>Horizontal</EndOrientation>
       </Relationship>
       <Relationship type="Association" first="13" second="0">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>265</X>
-          <Y>235</Y>
+          <X>305</X>
+          <Y>240</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>210</X>
@@ -255,6 +287,30 @@
           <X>105</X>
           <Y>651</Y>
         </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="2" second="15">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>522</X>
+          <Y>153</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>517</X>
+          <Y>153</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Realization" first="1" second="15">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="10" second="11">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="17" second="16">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
       </Relationship>
     </Relationships>
   </ProjectItem>
